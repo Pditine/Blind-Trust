@@ -23,7 +23,7 @@ namespace Hmxs.Scripts.Network
         [SerializeField] private GameObject connectedRoot;
 
         private string _ip;
-        private NetworkManager _manager;
+        private BlindTrustNetworkManager _manager;
 
         private void Start()
         {
@@ -31,7 +31,7 @@ namespace Hmxs.Scripts.Network
             hostButton.onClick.AddListener(OnHost);
             clientButton.onClick.AddListener(OnClient);
 
-            _manager = NetworkManager.singleton;
+            _manager = GetComponent<BlindTrustNetworkManager>();
             ipInputField.text = _manager.networkAddress;
         }
 
@@ -49,6 +49,7 @@ namespace Hmxs.Scripts.Network
                 infoText.text = "Host Start Successfully.\nIP: " + GetLocalIP();
                 startRoot.SetActive(false);
                 connectedRoot.SetActive(true);
+                NetworkClient.Ready();
                 return;
             }
             Debug.Log("Host Start Failed");
@@ -69,6 +70,7 @@ namespace Hmxs.Scripts.Network
                 infoText.text = "Client Connected Successfully.";
                 startRoot.SetActive(false);
                 connectedRoot.SetActive(true);
+                NetworkClient.Ready();
                 return;
             }
             Debug.Log("Client Connected Failed");

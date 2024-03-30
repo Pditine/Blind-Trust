@@ -49,7 +49,7 @@ namespace Hmxs.Scripts.Network
                 infoText.text = "Host Start Successfully.\nIP: " + GetLocalIP();
                 startRoot.SetActive(false);
                 connectedRoot.SetActive(true);
-                NetworkClient.Ready();
+                //NetworkClient.Ready();
                 return;
             }
             Debug.Log("Host Start Failed");
@@ -70,7 +70,7 @@ namespace Hmxs.Scripts.Network
                 infoText.text = "Client Connected Successfully.";
                 startRoot.SetActive(false);
                 connectedRoot.SetActive(true);
-                NetworkClient.Ready();
+                //NetworkClient.Ready();
                 return;
             }
             Debug.Log("Client Connected Failed");

@@ -1,24 +1,26 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 namespace PurpleFlowerCore
 {
     public class Process: MonoBehaviour
     {
         private List<IProcessNode> _nodes;
         private int _currentNodeIndex;
-        private bool _isPause = true;
-        private bool _loop;
+        private bool _isPause = true; 
+        public bool Loop;
         public Process Init(bool loop = false,params IProcessNode[] nodes)
         {
             Clear();
-            _loop = loop;
+            Loop = loop;
             _nodes = new List<IProcessNode>(nodes);
             return this;
         }
         public Process Init(bool loop = false,List<IProcessNode> nodes = null)
         {
             Clear();
-            _loop = loop;
+            Loop = loop;
             _nodes = nodes;
             return this;
         }
@@ -66,7 +68,7 @@ namespace PurpleFlowerCore
             if (_isPause) return;
             if(_currentNodeIndex>=_nodes.Count)
             {
-                if (_loop)
+                if (Loop)
                     Start_();
                 else
                     Pause();

@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using PurpleFlowerCore;
+using PurpleFlowerCore.Utility;
+using UnityEngine;
 
 namespace LJH.Scripts.Map
 {
@@ -11,6 +14,16 @@ namespace LJH.Scripts.Map
         [SerializeField] private float maxSpeed;
         [SerializeField] private float checkScope;
         [SerializeField] private Vector3 direction;
+        [SerializeField] private Transform rayPoint;
+
+        private void Start()
+        {
+            DelayUtility.Delay(30, () =>
+            {
+                PoolSystem.PushGameObject(gameObject);
+            });
+        }
+
         private void Update()
         {
             Move();
@@ -47,11 +60,10 @@ namespace LJH.Scripts.Map
 
         private void CheckFront()
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right,
+            RaycastHit2D hit = Physics2D.Raycast(rayPoint.position, direction*checkScope,
                 checkScope,LayerMask.GetMask("Traffic"));
             
-            Debug.DrawRay(transform.position, direction*checkScope,Color.red);
-            Debug.Log(hit);
+            Debug.DrawRay(rayPoint.position, direction*checkScope,Color.red);
             if (hit)
                 _targetSpeed = 0;
             else

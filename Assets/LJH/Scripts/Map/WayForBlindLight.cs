@@ -25,13 +25,13 @@ namespace LJH.Scripts.Map
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.CompareTag("TheBlind")) return;
+            if (!other.CompareTag("Human")) return;
             _target = 1;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (!other.CompareTag("TheBlind")) return;
+            if (!other.CompareTag("Human")) return;
             _target = 0;
         }
     }

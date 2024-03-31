@@ -1,5 +1,7 @@
 ﻿using Hmxs.Scripts.Player;
+using LJH.Scripts;
 using Mirror;
+using PurpleFlowerCore.Utility;
 using UnityEngine;
 
 namespace Hmxs.Scripts.Network
@@ -39,6 +41,12 @@ namespace Hmxs.Scripts.Network
             NetworkServer.AddPlayerForConnection(conn, playerObj);
 
             playerCount++;
+
+            GameManager.Instance.SetPlayer(playerObj);
+            if(playerCount>=2)
+            {
+                DelayUtility.Delay(2,GameManager.Instance.RpcGameStart);
+            }
         }
     }
 }

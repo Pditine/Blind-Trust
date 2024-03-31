@@ -27,8 +27,12 @@ namespace LJH.Scripts.Map
         private void Update()
         {
             Move();
-            ChangeSpeed();
             CheckFront();
+        }
+
+        private void FixedUpdate()
+        {
+            ChangeSpeed();
         }
 
         private void Move()
@@ -55,7 +59,7 @@ namespace LJH.Scripts.Map
             //     _speed = maxSpeed * (1-proportion) / slowDownScope;
             // }
 
-            _speed = Mathf.Lerp(_speed, _targetSpeed, 0.01f);
+            _speed = Mathf.Lerp(_speed, _targetSpeed, 0.03f);
         }
 
         private void CheckFront()

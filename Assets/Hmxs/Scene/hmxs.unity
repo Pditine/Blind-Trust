@@ -188,7 +188,6 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 3531271036457363470, guid: 2d465f6f847500848bb2d41504f426e3, type: 3}
   - {fileID: 5687813834508152878, guid: 1863504b7018287418cbe90a934c1e12, type: 3}
   - {fileID: 8786710172609301881, guid: 6891fe990f675ca49a223e391ff24b9e, type: 3}
   exceptionsDisconnect: 1
@@ -563,6 +562,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426304512}
+  - component: {fileID: 426304513}
   m_Layer: 0
   m_Name: StartPoint
   m_TagString: Untagged
@@ -587,6 +587,18 @@ Transform:
   - {fileID: 1650529689}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &426304513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426304511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5144310d4a0d4cb18e19fc6717e28fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &569272798
 GameObject:
   m_ObjectHideFlags: 3

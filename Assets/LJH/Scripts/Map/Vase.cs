@@ -7,9 +7,14 @@ namespace LJH.Scripts.Map
     {
         [SerializeField] private Sprite brokenSprite;
         
-
-        [Command]
+        [Command(requiresAuthority = false)]
         private void CmdBroke()
+        {
+            RpcBroke();
+        }
+
+        [ClientRpc]
+        private void RpcBroke()
         {
             GetComponent<SpriteRenderer>().sprite = brokenSprite;
         }

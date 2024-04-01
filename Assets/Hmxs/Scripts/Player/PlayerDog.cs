@@ -15,6 +15,11 @@ namespace Hmxs.Scripts.Player
             transform.position += (Vector3)movement * (speed * Time.deltaTime);
         }
 
+        protected override void OnIdle()
+        {
+            
+        }
+
         protected override void OnAct()
         {
             // var theBark = Instantiate(bark, transform.position,Quaternion.identity);

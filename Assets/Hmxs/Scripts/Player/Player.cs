@@ -14,13 +14,15 @@ namespace Hmxs.Scripts.Player
             {
                 //Debug.Log("Moving: " + InputManager.Instance.MoveValue);
                 OnMove(InputManager.Instance.MoveValue);
-            }
+            }else
+                OnIdle();
 
             if (InputManager.Instance.ActValue)
                 OnAct();
         }
 
         protected abstract void OnMove(Vector2 movement);
+        protected abstract void OnIdle();
         protected abstract void OnAct();
     }
 }

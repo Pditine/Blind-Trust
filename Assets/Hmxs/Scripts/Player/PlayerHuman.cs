@@ -10,6 +10,7 @@ namespace Hmxs.Scripts.Player
     {
         [SerializeField] private float speed;
         [SyncVar] private Vector3 _targetPosition;
+        [SerializeField] private Animator theAnimator;
         [SyncVar] private float _arrowAlpha;
         [SerializeField] private GameObject arrow;
         [SerializeField] private SpriteRenderer arrowSpriteRenderer;
@@ -47,7 +48,13 @@ namespace Hmxs.Scripts.Player
 
         protected override void OnMove(Vector2 movement)
         {
+            theAnimator.SetBool("Walking",true);
             transform.position += (Vector3)movement * (speed * Time.deltaTime);
+        }
+
+        protected override void OnIdle()
+        {
+            theAnimator.SetBool("Walking",false);
         }
 
         protected override void OnAct()

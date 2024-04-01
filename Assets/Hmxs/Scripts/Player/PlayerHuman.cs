@@ -50,6 +50,12 @@ namespace Hmxs.Scripts.Player
         {
             theAnimator.SetBool("Walking",true);
             transform.position += (Vector3)movement * (speed * Time.deltaTime);
+            PFCLog.Info(movement.x);
+            if(movement.x!=0)
+                transform.localScale = new Vector3(movement.x>0?-1:1, 1, 0);
+            
+            
+            
         }
 
         protected override void OnIdle()

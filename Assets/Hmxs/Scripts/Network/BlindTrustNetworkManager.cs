@@ -10,6 +10,7 @@ namespace Hmxs.Scripts.Network
     {
         [SerializeField] [ReadOnly] private int playerCount = 0;
 
+
         public new static BlindTrustNetworkManager singleton => (BlindTrustNetworkManager)NetworkManager.singleton;
 
         private PlayerReference _playerReference;
@@ -41,10 +42,15 @@ namespace Hmxs.Scripts.Network
             NetworkServer.AddPlayerForConnection(conn, playerObj);
 
             playerCount++;
-
+            
             GameManager.Instance.SetPlayer(playerObj);
-            if(playerCount>=2)
+            if(playerCount==1)
             {
+                GameManager.Instance.Human = playerObj.GetComponent<PlayerHuman>();
+            }
+            else if(playerCount == 2)
+            {
+                GameManager.Instance.Dog = playerObj.GetComponent<PlayerDog>();
                 DelayUtility.Delay(2,GameManager.Instance.CmdGameStart);
             }
         }

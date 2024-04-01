@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using Hmxs.Scripts.Player;
 using Mirror;
 using PurpleFlowerCore;
 using PurpleFlowerCore.Utility;
@@ -22,6 +23,10 @@ namespace LJH.Scripts
         [SerializeField] private Light2D globalLight; // 弃用
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private Text message;
+        
+        [SyncVar] public PlayerDog Dog;
+        [SyncVar] public PlayerHuman Human;
+        
         private void Awake()
         {
             Instance = this;
@@ -72,6 +77,7 @@ namespace LJH.Scripts
                     FadeUtility.FadeOut(blackPanel, 80);
                 });
             });
+            PFCLog.Info("开始游戏逻辑完成");
         }
         [ClientRpc]
         private void RpcGameOver(string theMessage)

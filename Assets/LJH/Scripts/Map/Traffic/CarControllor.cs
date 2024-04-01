@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using PurpleFlowerCore;
 using PurpleFlowerCore.Utility;
 using UnityEngine;
@@ -15,14 +15,16 @@ namespace LJH.Scripts.Map
         [SerializeField] private float checkScope;
         [SerializeField] private Vector3 direction;
         [SerializeField] private Transform rayPoint;
+        [SerializeField] private List<Sprite> sprites = new();
 
         private void Start()
         {
-            DelayUtility.Delay(30, () =>
+            DelayUtility.Delay(60, () =>
             {
-                //PoolSystem.PushGameObject(gameObject);
-                Destroy(gameObject);
+                PoolSystem.PushGameObject(gameObject);
+                //Destroy(gameObject);
             });
+            GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Count)];
         }
 
         private void Update()

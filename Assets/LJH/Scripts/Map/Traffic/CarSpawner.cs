@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Mirror;
 using PurpleFlowerCore;
 using UnityEngine;
@@ -7,32 +8,39 @@ using Random = UnityEngine.Random;
 
 namespace LJH.Scripts.Map
 {
-    public class CarSpawner : NetworkBehaviour
+    public class CarSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject car;
         //[SerializeField] private Transform createPoint;
-        [SerializeField] private float minTime;
-        [SerializeField] private float maxTime;
+        // [SerializeField] private float minTime;
+        // [SerializeField] private float maxTime;
+        [SerializeField]private List<float> randomNumList = new();
+        private int _randomNumIndex = -1;
 
-        private void OnEnable()
+        public float GetRandomNum()
         {
-            EventSystem.AddEventListener("GameStart",CmdCreateCar);
+            _randomNumIndex++;
+            if (_randomNumIndex >= randomNumList.Count)
+                _randomNumIndex = 0;
+            return randomNumList[_randomNumIndex];
         }
-
-        private void OnDisable()
-        {
-            EventSystem.RemoveEventListener("GameStart",CmdCreateCar);
-        }
-
-        // private void Start()
+        // private void OnEnable()
         // {
-        //     
-        //     CmdCreateCar();
+        //     EventSystem.AddEventListener("GameStart",CreateCar);
         // }
+        //
+        // private void OnDisable()
+        // {
+        //     EventSystem.RemoveEventListener("GameStart",CreateCar);
+        // }
+
+        private void Start()
+        {
+            
+            CreateCar();
+        }
         
-        
-        [Command(requiresAuthority = false)]
-        private void CmdCreateCar()
+        private void CreateCar()
         {
             StartCoroutine(DoCreateCar());
         }
@@ -41,14 +49,15 @@ namespace LJH.Scripts.Map
         {
             while (true)
             {
-                yield return new WaitForSeconds(Random.Range(minTime, maxTime));
-                var theCar = Instantiate(car, transform.position, Quaternion.identity, transform);
-                //var theCar = PoolSystem.GetGameObject(car);
-                NetworkServer.Spawn(theCar);
+                yield return new WaitForSeconds(GetRandomNum());
+                //var theCar = Instantiate(car, transform.position, Quaternion.identity, transform);
+                var theCar = PoolSystem.GetGameObject(car);
+                //NetworkServer.Spawn(theCar);
                 theCar.transform.parent = transform;
                 theCar.transform.position = transform.position;
             }
         }
+        
         
     }
 }

@@ -18,11 +18,13 @@ namespace LJH.Scripts.Map
         [SerializeField] private List<GameObject> airWalls = new();
         [SerializeField] private float delayTime;
         [SerializeField] private float deltaTime;
+        [SerializeField] private List<Sprite> sprites = new();
 
         private void Start()
         {
             var theProcess = gameObject.AddComponent<Process>();
-            theProcess.Init(true, new ActionNode(BeGreen), new WaitNode(deltaTime),
+            theProcess.Init(true, new ActionNode(BeGreen), new WaitNode(deltaTime/2),
+                new ActionNode(BeYellow), new WaitNode(deltaTime/2),
                 new ActionNode(BeRed), new WaitNode(deltaTime));
             DelayUtility.Delay(delayTime, () =>
             {
@@ -32,25 +34,25 @@ namespace LJH.Scripts.Map
 
         public void BeGreen()
         {
-            theBulb.color = Color.green;
+            theBulb.sprite = sprites[0];
             foreach (var airWall in airWalls)
             {
                 airWall.SetActive(false);
             }
         }
-        // public void BeYellow()
-        // {
-        //     //_state = TrafficLightColor.Yellow;
-        //     theBulb.color = Color.yellow;
-        //     foreach (var airWall in airWalls)
-        //     {
-        //         airWall.SetActive(true);
-        //     }
-        // }
+        public void BeYellow()
+        {
+            //_state = TrafficLightColor.Yellow;
+            theBulb.sprite = sprites[1];
+            foreach (var airWall in airWalls)
+            {
+                airWall.SetActive(true);
+            }
+        }
         public void BeRed()
         {
             //_state = TrafficLightColor.Red;
-            theBulb.color = Color.red;
+            theBulb.sprite = sprites[2];
             foreach (var airWall in airWalls)
             {
                 airWall.SetActive(true);

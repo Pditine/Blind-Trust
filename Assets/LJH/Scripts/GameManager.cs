@@ -72,6 +72,7 @@ namespace LJH.Scripts
                     FadeUtility.FadeOut(blackPanel, 80);
                 });
             });
+            PFCLog.Info("开始游戏逻辑完成");
         }
         [ClientRpc]
         private void RpcGameOver(string theMessage)

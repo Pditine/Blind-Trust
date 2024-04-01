@@ -48,6 +48,7 @@ namespace LJH.Scripts
             }
 
             ThePlayer.transform.position = isServer ? humanBirthPoint.position : dogBirthPoint.position;
+            EventSystem.EventTrigger("GameStart");
         }
         
         [ClientRpc]
@@ -58,9 +59,10 @@ namespace LJH.Scripts
         }
         
         [ClientRpc]
-        public void RpcGameStart()
+        private void RpcGameStart()
         {
             PFCLog.Info("游戏开始");
+            PFCLog.Info(NetworkClient.ready);
             gameOverPanel.SetActive(false);
             FadeUtility.FadeInAndStay(blackPanel,80, () =>
             {
@@ -72,13 +74,36 @@ namespace LJH.Scripts
             });
         }
         [ClientRpc]
-        public void RpcGameOver(string theMessage)
+        private void RpcGameOver(string theMessage)
         {
             if(isServer)Camera.main.cullingMask = LayerMask.GetMask("Default","Traffic","HumanAndDog");
             message.text = theMessage;
             gameOverPanel.SetActive(true);
             globalLight.intensity = 1;
         }
+
+        // public void GameOver(string theMessage)
+        // {
+        //     if (isServer)
+        //         RpcGameOver(theMessage);
+        // }
         
+        [Command(requiresAuthority = false)]
+        public void CmdGameStart()
+        {
+            RpcGameStart();
+        }
+
+        // public void GameStart()
+        // {
+        //     if(isServer)
+        //         RpcGameStart();
+        // }
+        
+        [Command(requiresAuthority = false)]
+        public void CmdGameOver(string theMessage)
+        {
+            RpcGameOver(theMessage);
+        }
     }
 }

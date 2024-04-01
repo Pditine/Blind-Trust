@@ -20,7 +20,8 @@ namespace LJH.Scripts.Map
         {
             DelayUtility.Delay(30, () =>
             {
-                PoolSystem.PushGameObject(gameObject);
+                //PoolSystem.PushGameObject(gameObject);
+                Destroy(gameObject);
             });
         }
 

@@ -45,7 +45,7 @@ namespace Hmxs.Scripts.Network
             GameManager.Instance.SetPlayer(playerObj);
             if(playerCount>=2)
             {
-                DelayUtility.Delay(2,GameManager.Instance.RpcGameStart);
+                DelayUtility.Delay(2,GameManager.Instance.CmdGameStart);
             }
         }
     }

@@ -8,7 +8,7 @@ namespace LJH.Scripts.Map
     {
         protected override void PlayerEnter(Collider2D thePlayer)
         {
-            GameManager.Instance.RpcGameOver("死");
+            GameManager.Instance.CmdGameOver("死");
         }
 
         protected override void PlayerExit(Collider2D thePlayer)

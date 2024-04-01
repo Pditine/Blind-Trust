@@ -22,8 +22,7 @@ namespace LJH.Scripts.Map
         private void Start()
         {
             var theProcess = gameObject.AddComponent<Process>();
-            theProcess.Init(true, new ActionNode(BeGreen), new WaitNode(deltaTime/2),
-                new ActionNode(BeYellow), new WaitNode(deltaTime/2),
+            theProcess.Init(true, new ActionNode(BeGreen), new WaitNode(deltaTime),
                 new ActionNode(BeRed), new WaitNode(deltaTime));
             DelayUtility.Delay(delayTime, () =>
             {
@@ -39,15 +38,15 @@ namespace LJH.Scripts.Map
                 airWall.SetActive(false);
             }
         }
-        public void BeYellow()
-        {
-            //_state = TrafficLightColor.Yellow;
-            theBulb.color = Color.yellow;
-            foreach (var airWall in airWalls)
-            {
-                airWall.SetActive(true);
-            }
-        }
+        // public void BeYellow()
+        // {
+        //     //_state = TrafficLightColor.Yellow;
+        //     theBulb.color = Color.yellow;
+        //     foreach (var airWall in airWalls)
+        //     {
+        //         airWall.SetActive(true);
+        //     }
+        // }
         public void BeRed()
         {
             //_state = TrafficLightColor.Red;

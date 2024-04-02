@@ -10,8 +10,10 @@ namespace LJH.Scripts.Map
         [SerializeField]private List<Transform> points = new();
         [SerializeField] private float waitTime;
         [SerializeField] private float speed;
+        [SerializeField] private int id;
         private bool _isWaiting;
         private int _pointIndex;
+        
         private void Update()
         {
             Move();

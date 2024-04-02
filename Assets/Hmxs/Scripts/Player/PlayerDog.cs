@@ -11,12 +11,12 @@ namespace Hmxs.Scripts.Player
         [SerializeField] public Animator TheAnimator;
         private void OnEnable()
         {
-            EventSystem.AddEventListener("GameStart",ReSet);
+            EventSystem.AddEventListener("GameReStart",ReSet);
         }
 
         private void OnDisable()
         {
-            EventSystem.RemoveEventListener("GameStart",ReSet);
+            EventSystem.RemoveEventListener("GameReStart",ReSet);
         }
 
         private void ReSet()

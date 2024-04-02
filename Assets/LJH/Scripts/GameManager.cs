@@ -23,6 +23,7 @@ namespace LJH.Scripts
         [SerializeField] private Light2D globalLight; // 弃用
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private Text message;
+        private bool _hasStart;
         
         [SyncVar] public PlayerDog Dog;
         [SyncVar] public PlayerHuman Human;
@@ -65,18 +66,22 @@ namespace LJH.Scripts
         [ClientRpc]
         private void RpcGameStart()
         {
-            PFCLog.Info("游戏开始");
-            PFCLog.Info(NetworkClient.ready);
             gameOverPanel.SetActive(false);
             FadeUtility.FadeInAndStay(blackPanel,80, () =>
             {
                 DelayUtility.Delay(2, () =>
                 {
                     InitGame();
-                    FadeUtility.FadeOut(blackPanel, 80, () =>
+                    if(!_hasStart)
                     {
                         EventSystem.EventTrigger("GameStart");
-                    });
+                        _hasStart = true;
+                    }
+                    else
+                    {
+                        EventSystem.EventTrigger("GameReStart");
+                    }
+                    FadeUtility.FadeOut(blackPanel, 80);
                 });
             });
             PFCLog.Info("开始游戏逻辑完成");

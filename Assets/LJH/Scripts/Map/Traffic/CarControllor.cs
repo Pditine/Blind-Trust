@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
+using Hmxs.Scripts.Player;
 using Mirror;
-using PurpleFlowerCore;
-using PurpleFlowerCore.Utility;
 using UnityEngine;
 
 namespace LJH.Scripts.Map
 {
-    public class CarController : NetworkBehaviour
+    public class CarController : TriggerBase
     {
-        // [SerializeField] private Transform startPoint;
-        // [SerializeField] private Transform endPoint;
         private float _speed;
         private float _targetSpeed;
         [SerializeField] private float maxSpeed;
@@ -26,12 +23,12 @@ namespace LJH.Scripts.Map
         private void Start()
         {
             if (!isServer) return;
-            DelayUtility.Delay(60, () =>
-            {
-                //PoolSystem.PushGameObject(gameObject);
-                //Destroy(gameObject);
-                NetworkServer.Destroy(gameObject);
-            });
+            // DelayUtility.Delay(60, () =>
+            // {
+            //     //PoolSystem.PushGameObject(gameObject);
+            //     //Destroy(gameObject);
+            //     NetworkServer.Destroy(gameObject);
+            // });
             Init(Random.Range(0,sprites.Count));
         }
 
@@ -50,27 +47,10 @@ namespace LJH.Scripts.Map
         
         private void Move()
         {
-            // Vector3 direction = (endPoint.position - transform.position).normalized;
-            // transform.position += direction * (_speed*Time.deltaTime);
             transform.position += direction * (_speed*Time.deltaTime);
         }
         private void ChangeSpeed()
         {
-            // float distance = (transform.position - startPoint.position).magnitude;
-            // float proportion = distance / (endPoint.position-startPoint.position).magnitude;
-            // if (proportion < slowDownScope)
-            // {
-            //     _speed = maxSpeed * proportion / slowDownScope;
-            // }
-            // else if (proportion < 1-slowDownScope)
-            // {
-            //     _speed = maxSpeed;
-            // }
-            // else if(proportion<1)
-            // {
-            //     _speed = maxSpeed * (1-proportion) / slowDownScope;
-            // }
-
             _speed = Mathf.Lerp(_speed, _targetSpeed, 0.03f);
         }
         
@@ -84,6 +64,35 @@ namespace LJH.Scripts.Map
                 _targetSpeed = 0;
             else
                 _targetSpeed = maxSpeed;
+            
+            RaycastHit2D hit2 = Physics2D.Raycast(rayPoint.position, direction*checkScope,
+                checkScope,LayerMask.GetMask("CarDead"));
+            if(hit2)
+                NetworkServer.Destroy(gameObject);
+        }
+
+        protected override void HumanEnter(Collider2D thePlayer)
+        {
+            GameManager.Instance.CmdGameOver("盲人撞到车辆");
+            thePlayer.GetComponent<PlayerHuman>().CanMove = false;
+            thePlayer.GetComponent<PlayerHuman>().TheAnimator.SetTrigger("BeHit");
+        }
+
+        protected override void HumanExit(Collider2D thePlayer)
+        {
+            
+        }
+
+        protected override void DogEnter(Collider2D thePlayer)
+        {
+            GameManager.Instance.CmdGameOver("导盲犬撞到车辆");
+            thePlayer.GetComponent<PlayerDog>().CanMove = false;
+            thePlayer.GetComponent<PlayerDog>().TheAnimator.SetTrigger("BeHit");
+        }
+
+        protected override void DogExit(Collider2D thePlayer)
+        {
+            
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using PurpleFlowerCore;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace LJH.Scripts.Map
 {

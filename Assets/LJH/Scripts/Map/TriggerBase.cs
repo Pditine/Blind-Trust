@@ -1,5 +1,4 @@
-﻿using System;
-using Mirror;
+﻿using Mirror;
 using UnityEngine;
 
 namespace LJH.Scripts.Map
@@ -8,22 +7,34 @@ namespace LJH.Scripts.Map
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Human")||other.CompareTag("Dog"))
+            if (other.CompareTag("Human"))
             {
-                PlayerEnter(other);
+                HumanEnter(other);
+            }
+
+            if (other.CompareTag("Dog"))
+            {
+                DogEnter(other);
             }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Human")||other.CompareTag("Dog"))
+            if (other.CompareTag("Human"))
             {
-                PlayerExit(other);
+                HumanExit(other);
+            }
+
+            if (other.CompareTag("Dog"))
+            {
+                DogExit(other);
             }
         }
 
-        protected abstract void PlayerEnter(Collider2D thePlayer);
+        protected abstract void HumanEnter(Collider2D thePlayer);
+        protected abstract void HumanExit(Collider2D thePlayer);
 
-        protected abstract void PlayerExit(Collider2D thePlayer);
+        protected abstract void DogEnter(Collider2D thePlayer);
+        protected abstract void DogExit(Collider2D thePlayer);
     }
 }

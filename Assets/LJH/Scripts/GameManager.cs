@@ -53,7 +53,6 @@ namespace LJH.Scripts
             }
 
             ThePlayer.transform.position = isServer ? humanBirthPoint.position : dogBirthPoint.position;
-            EventSystem.EventTrigger("GameStart");
         }
         
         [ClientRpc]
@@ -74,7 +73,10 @@ namespace LJH.Scripts
                 DelayUtility.Delay(2, () =>
                 {
                     InitGame();
-                    FadeUtility.FadeOut(blackPanel, 80);
+                    FadeUtility.FadeOut(blackPanel, 80, () =>
+                    {
+                        EventSystem.EventTrigger("GameStart");
+                    });
                 });
             });
             PFCLog.Info("开始游戏逻辑完成");

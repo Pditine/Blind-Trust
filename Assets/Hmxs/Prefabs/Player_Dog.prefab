@@ -79,6 +79,8 @@ MonoBehaviour:
   TheAnimator: {fileID: 2599854735852224862}
   arrow: {fileID: 6577794223076643335}
   bark: {fileID: 2284598961447881339}
+  CdTime: 0.5
+  cd: {fileID: 0}
 --- !u!50 &9051789978221438125
 Rigidbody2D:
   serializedVersion: 4

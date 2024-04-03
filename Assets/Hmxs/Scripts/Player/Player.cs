@@ -10,6 +10,8 @@ namespace Hmxs.Scripts.Player
         public bool CanMove = true;
         [SerializeField] private VolumeProfile volumeProfile;
 
+        
+        
         public override void OnStartClient()
         {
             base.OnStartClient();

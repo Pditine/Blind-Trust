@@ -30,6 +30,8 @@ namespace LJH.Scripts
 
         [SerializeField] private Transform _terminalPoint;
         public Transform TerminalPoint=>_terminalPoint;
+
+        public Image dogCd;
         
         private void Awake()
         {

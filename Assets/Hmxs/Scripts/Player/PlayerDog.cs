@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
+using System.Threading;
 using LJH.Scripts;
 using Mirror;
 using PurpleFlowerCore;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Hmxs.Scripts.Player
 {
@@ -13,10 +16,36 @@ namespace Hmxs.Scripts.Player
         
         [SerializeField] private GameObject arrow;
         [SerializeField] private AudioSource bark;
+        private bool _canBark;
+        private float _cdTimer;
+        [SerializeField] private float CdTime;
+        [SerializeField] private Image cd;
+
+        public override void OnStartClient()
+        {
+            base.OnStartClient();
+            cd = GameManager.Instance.dogCd;
+            if (!isLocalPlayer)
+            {
+                cd.gameObject.SetActive(false);
+            }
+        }
+        
         protected override void Update()
         {
             base.Update();
             arrow.transform.right = GameManager.Instance.TerminalPoint.position-transform.position;
+            if (!_canBark)
+            {
+                _cdTimer += Time.deltaTime;
+                cd.fillAmount = _cdTimer / CdTime;
+                if (_cdTimer >= CdTime)
+                {
+                    _cdTimer = 0;
+                    _canBark = true;
+                    cd.fillAmount = 0;
+                }
+            }
         }
 
         private void OnEnable()
@@ -66,11 +95,14 @@ namespace Hmxs.Scripts.Player
             // NetworkServer.Spawn(theBark);
             // PFCLog.Info(BlindTrustNetworkManager.singleton);
             // PFCLog.Info(BlindTrustNetworkManager.singleton.Human);
+            if(!_canBark) return;
+            _canBark = false;
+            _cdTimer = 0;
             GameManager.Instance.Human.CmdChangeTarget(transform.position);
             CmdBark();
             Debug.Log("Dog Acting");
         }
-
+        
         [Command(requiresAuthority = false)]
         private void CmdBark()
         {

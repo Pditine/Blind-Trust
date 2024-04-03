@@ -10,6 +10,7 @@ namespace LJH.Scripts.Map
         private Sprite _oriSprite;
         private bool _hasBroken;
         private SpriteRenderer TheSpriteRenderer;
+        private AudioSource _audioSource;
 
         private void OnEnable()
         {
@@ -25,6 +26,7 @@ namespace LJH.Scripts.Map
         {
             TheSpriteRenderer = GetComponent<SpriteRenderer>();
             _oriSprite = TheSpriteRenderer.sprite;
+            _audioSource.GetComponent<AudioSource>();
         }
 
         private void ReSet()
@@ -44,6 +46,7 @@ namespace LJH.Scripts.Map
         {
             if (_hasBroken) return;
             TheSpriteRenderer.sprite = brokenSprite;
+            _audioSource.Play();
         }
         protected override void HumanEnter(Collider2D thePlayer)
         {

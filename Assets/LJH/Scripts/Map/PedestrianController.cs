@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Hmxs.Scripts;
 using Mirror;
 using PurpleFlowerCore;
 using PurpleFlowerCore.Utility;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace LJH.Scripts.Map
 {
-    public class PedestrianController : NetworkBehaviour
+    public class PedestrianController : TriggerBase
     {
         [SerializeField]private List<Transform> points = new();
         [SerializeField] private float waitTime;
@@ -92,6 +93,25 @@ namespace LJH.Scripts.Map
             _isWaiting = isWait;
             TheAnimator.SetBool("Walking", !isWait);
         }
-        
+
+        protected override void HumanEnter(Collider2D thePlayer)
+        {
+            SoundManager.Instance.PlaySound(id,transform);
+        }
+
+        protected override void HumanExit(Collider2D thePlayer)
+        {
+            
+        }
+
+        protected override void DogEnter(Collider2D thePlayer)
+        {
+            SoundManager.Instance.PlaySound(id+1,transform);
+        }
+
+        protected override void DogExit(Collider2D thePlayer)
+        {
+            
+        }
     }
 }

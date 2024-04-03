@@ -12,7 +12,7 @@ namespace Hmxs.Scripts.Player
         [SerializeField] public Animator TheAnimator;
         
         [SerializeField] private GameObject arrow;
-
+        [SerializeField] private AudioSource bark;
         protected override void Update()
         {
             base.Update();
@@ -67,7 +67,14 @@ namespace Hmxs.Scripts.Player
             // PFCLog.Info(BlindTrustNetworkManager.singleton);
             // PFCLog.Info(BlindTrustNetworkManager.singleton.Human);
             GameManager.Instance.Human.CmdChangeTarget(transform.position);
+            Bark();
             Debug.Log("Dog Acting");
+        }
+
+        [ClientRpc]
+        private void Bark()
+        {
+            bark.Play();
         }
     }
 }

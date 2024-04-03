@@ -1,20 +1,25 @@
 ﻿using Hmxs.Scripts.Input;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Hmxs.Scripts.Player
 {
     public abstract class Player : NetworkBehaviour
     {
         public bool CanMove = true;
-        [SerializeField] private GameObject globalVolume;
+        [SerializeField] private VolumeProfile volumeProfile;
+
+        public override void OnStartClient()
+        {
+            base.OnStartClient();
+
+            if (isLocalPlayer) FindObjectOfType<Volume>().profile = volumeProfile;
+        }
+
         protected virtual void Update()
         {
-            if (!isLocalPlayer)
-            {
-                globalVolume.SetActive(false);
-                return;
-            }
+            if (!isLocalPlayer) return;
             if (!CanMove) return;
             if (InputManager.Instance.MoveValue.magnitude > 0)
             {

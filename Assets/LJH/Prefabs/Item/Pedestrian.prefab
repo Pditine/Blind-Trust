@@ -111,6 +111,7 @@ MonoBehaviour:
   waitTime: 2
   speed: 6
   id: 0
+  TheAnimator: {fileID: 1252471241542348830}
 --- !u!61 &4989871260669499499
 BoxCollider2D:
   m_ObjectHideFlags: 0

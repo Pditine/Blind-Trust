@@ -49,7 +49,7 @@ namespace LJH.Scripts
             if (isServer)
             {
                 Camera.main.cullingMask = LayerMask.GetMask("Human","HumanAndDog");
-                globalLight.intensity = 0;
+                globalLight.intensity = 0.3f;
             }
             else
             {

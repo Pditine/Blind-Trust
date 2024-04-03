@@ -15,14 +15,15 @@ namespace LJH.Scripts.Map
         [SerializeField] private float waitTime;
         [SerializeField] private float speed;
         [SerializeField] private int id;
-        private Animator TheAnimator;
+        [SerializeField] private Animator TheAnimator;
         private bool _isWaiting;
         private int _pointIndex;
         private Vector3 _oriPosition;
 
-        private void Start()
+        public override void OnStartClient()
         {
-            TheAnimator = GetComponent<Animator>();
+            base.OnStartClient();
+            // TheAnimator = GetComponent<Animator>();
             _oriPosition = transform.position;
         }
 

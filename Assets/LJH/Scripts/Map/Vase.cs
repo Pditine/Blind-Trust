@@ -10,8 +10,8 @@ namespace LJH.Scripts.Map
         private Sprite _oriSprite;
         private bool _hasBroken;
         private SpriteRenderer TheSpriteRenderer;
-        [SerializeField]private AudioSource _audioSource;
-
+        //[SerializeField]private AudioSource _audioSource;
+        [SerializeField] private AudioClip audio;
         private void OnEnable()
         {
             EventSystem.AddEventListener("GameReStart",ReSet);
@@ -38,15 +38,16 @@ namespace LJH.Scripts.Map
         [Command(requiresAuthority = false)]
         private void CmdBroke()
         {
+            if (_hasBroken) return;
+            _hasBroken = true;
             RpcBroke();
         }
 
         [ClientRpc]
         private void RpcBroke()
         {
-            if (_hasBroken) return;
             TheSpriteRenderer.sprite = brokenSprite;
-            _audioSource.Play();
+            AudioSource.PlayClipAtPoint(audio,transform.position);
         }
         protected override void HumanEnter(Collider2D thePlayer)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using LJH.Scripts;
+using Mirror;
 using PurpleFlowerCore;
 using UnityEngine;
 
@@ -9,6 +10,15 @@ namespace Hmxs.Scripts.Player
     {
         [SerializeField] private float speed;
         [SerializeField] public Animator TheAnimator;
+        
+        [SerializeField] private GameObject arrow;
+
+        protected override void Update()
+        {
+            base.Update();
+            arrow.transform.right = GameManager.Instance.TerminalPoint.position-transform.position;
+        }
+
         private void OnEnable()
         {
             EventSystem.AddEventListener("GameReStart",ReSet);
@@ -31,9 +41,20 @@ namespace Hmxs.Scripts.Player
             TheAnimator.SetBool("Walking",true);
             transform.position += (Vector3)movement * (speed * Time.deltaTime);
             if(movement.x!=0)
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x)*movement.x > 0 ? -1 : 1, transform.localScale.y, 1);
+            {
+                int num = movement.x > 0 ? -1 : 1;
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * num,
+                    transform.localScale.y, 1);
+                RpcFlipArrow(num);
+            }
+            
         }
-
+        
+        private void RpcFlipArrow(int num)
+        {
+            arrow.transform.localScale = new Vector3(Mathf.Abs(arrow.transform.localScale.x)*num,arrow.transform.localScale.y, 1);
+        }
+        
         protected override void OnIdle()
         {
             TheAnimator.SetBool("Walking",false);

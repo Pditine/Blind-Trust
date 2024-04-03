@@ -27,6 +27,9 @@ namespace LJH.Scripts
         
         [SyncVar] public PlayerDog Dog;
         [SyncVar] public PlayerHuman Human;
+
+        [SerializeField] private Transform _terminalPoint;
+        public Transform TerminalPoint=>_terminalPoint;
         
         private void Awake()
         {

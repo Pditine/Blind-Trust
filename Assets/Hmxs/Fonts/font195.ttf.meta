@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a0043a4c74e03d846afc2bbfab99d6db
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - zihun195hao-mengqubaiqiti
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9803ec82813e501469b6638d9233b9b0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

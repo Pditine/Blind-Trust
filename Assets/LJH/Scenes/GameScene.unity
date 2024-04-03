@@ -10461,8 +10461,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ba10d19bb3151f94fbb7554a8baad16f, type: 2}
-  m_sharedMaterial: {fileID: 2346633692599641844, guid: ba10d19bb3151f94fbb7554a8baad16f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36daa5ea5c16b4f4bbb76f712fb6103c, type: 2}
+  m_sharedMaterial: {fileID: 8555893938314429091, guid: 36daa5ea5c16b4f4bbb76f712fb6103c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16471,7 +16471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22290,7 +22290,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a0043a4c74e03d846afc2bbfab99d6db, type: 3}
     m_FontSize: 180
     m_FontStyle: 0
     m_BestFit: 0
@@ -26232,8 +26232,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ba10d19bb3151f94fbb7554a8baad16f, type: 2}
-  m_sharedMaterial: {fileID: 2346633692599641844, guid: ba10d19bb3151f94fbb7554a8baad16f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36daa5ea5c16b4f4bbb76f712fb6103c, type: 2}
+  m_sharedMaterial: {fileID: 8555893938314429091, guid: 36daa5ea5c16b4f4bbb76f712fb6103c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -27852,7 +27852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2083422711}
   - component: {fileID: 2083422712}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: "\u76F2\u9053"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Value: 0.1
   smoothness:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.91
   rounded:
     m_OverrideState: 1
     m_Value: 1
@@ -206,16 +206,29 @@ MonoBehaviour:
   hueVsSat:
     m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 1
+      <length>k__BackingField: 0
       m_Loop: 1
+      m_ZeroValue: 0.5
+      m_Range: 1
+      m_Curve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  satVsSat:
+    m_OverrideState: 1
+    m_Value:
+      <length>k__BackingField: 1
+      m_Loop: 0
       m_ZeroValue: 0.5
       m_Range: 1
       m_Curve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.72287273
-          value: 0
+          time: 0.53778833
+          value: 0.19652206
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -225,21 +238,8 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  satVsSat:
-    m_OverrideState: 0
-    m_Value:
-      <length>k__BackingField: 0
-      m_Loop: 0
-      m_ZeroValue: 0.5
-      m_Range: 1
-      m_Curve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
   lumVsSat:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
       <length>k__BackingField: 0
       m_Loop: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: -2.3
+    m_Value: -2
   contrast:
     m_OverrideState: 1
     m_Value: 100
@@ -334,7 +334,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     m_OverrideState: 1
-    m_Value: 180
+    m_Value: 0
   saturation:
     m_OverrideState: 1
     m_Value: 0

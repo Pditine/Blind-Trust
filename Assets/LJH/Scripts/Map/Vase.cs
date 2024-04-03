@@ -10,7 +10,7 @@ namespace LJH.Scripts.Map
         private Sprite _oriSprite;
         private bool _hasBroken;
         private SpriteRenderer TheSpriteRenderer;
-        private AudioSource _audioSource;
+        [SerializeField]private AudioSource _audioSource;
 
         private void OnEnable()
         {
@@ -26,7 +26,7 @@ namespace LJH.Scripts.Map
         {
             TheSpriteRenderer = GetComponent<SpriteRenderer>();
             _oriSprite = TheSpriteRenderer.sprite;
-            _audioSource.GetComponent<AudioSource>();
+            //_audioSource.GetComponent<AudioSource>();
         }
 
         private void ReSet()

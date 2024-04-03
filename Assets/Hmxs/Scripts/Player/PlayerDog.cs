@@ -67,12 +67,18 @@ namespace Hmxs.Scripts.Player
             // PFCLog.Info(BlindTrustNetworkManager.singleton);
             // PFCLog.Info(BlindTrustNetworkManager.singleton.Human);
             GameManager.Instance.Human.CmdChangeTarget(transform.position);
-            Bark();
+            CmdBark();
             Debug.Log("Dog Acting");
         }
 
+        [Command(requiresAuthority = false)]
+        private void CmdBark()
+        {
+            RpcBark();
+        }
+
         [ClientRpc]
-        private void Bark()
+        private void RpcBark()
         {
             bark.Play();
         }

@@ -7,9 +7,14 @@ namespace Hmxs.Scripts.Player
     public abstract class Player : NetworkBehaviour
     {
         public bool CanMove = true;
+        [SerializeField] private GameObject globalVolume;
         protected virtual void Update()
         {
-            if (!isLocalPlayer) return;
+            if (!isLocalPlayer)
+            {
+                globalVolume.SetActive(false);
+                return;
+            }
             if (!CanMove) return;
             if (InputManager.Instance.MoveValue.magnitude > 0)
             {
